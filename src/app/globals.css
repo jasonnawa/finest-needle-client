@@ -43,3 +43,20 @@ body {
 .button:hover {
   background-color: #ff4d88;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 80s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}

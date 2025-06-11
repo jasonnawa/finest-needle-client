@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
+import TestimonialsMarquee from "@/components/TestimonialsMarquee";
 const bannerImages = ["/banner3.jpg", "/banner5.jpg"];
-
 
 export default function Home() {
   const [bgIndex, setBgIndex] = useState(0);
@@ -12,75 +12,90 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % bannerImages.length);
-    }, 6000); // switch every 5 seconds
+    }, 7000); // switch every 6 seconds
 
     return () => clearInterval(interval);
   }, []);
+  
 
-  const backgroundImage = `url(${bannerImages[bgIndex]})`;
-
-
+  const howItWorks = [
+    {
+      emoji: "📝",
+      title: "You Fill Out a Short Form",
+      description: "Share basic details and what you’re looking for.",
+    },
+    {
+      emoji: "🔍",
+      title: "We Review & Match You",
+      description:
+        "Based on compatibility, I’ll introduce you to potential partners.",
+    },
+    {
+      emoji: "💬",
+      title: "You Connect Privately",
+      description: "If you’re both interested, you take it from there.",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans">
       <Navbar />
       {/* Hero Section */}
-      <section
-  className=" min-h-screen flex items-center justify-start px-6 pt-52 pb-40 bg-cover bg-center transition-all duration-1000"
-  style={{ backgroundImage }}
->
-  <div className="bg-white/20 p-6 rounded-xl shadow-md max-w-2xl text-left ml-4 sm:ml-20">
-    <h1 className="text-4xl font-bold mb-4 text-white">Find Love Across the UK 💕</h1>
-    <p className="text-lg mb-6 text-white">
-      FinestNeedle connects hearts across the UK. Whether it's friendship or forever, start your journey here.
-    </p>
-    <Link
-      href="/signup"
-      className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
-    >
-      Get Started
-    </Link>
-  </div>
-</section>
+      <section className="relative w-full min-h-screen flex items-center justify-start px-6 pt-52 pb-40 overflow-hidden">
+        <img
+          src={bannerImages[bgIndex]}
+          alt="Banner"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0"
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
 
+        <div className="relative z-10">
+          <div className="bg-white/20 p-6 rounded-xl shadow-md max-w-2xl text-left ml-4 sm:ml-20">
+            <h1 className="text-4xl font-bold mb-4 text-white">
+              Find Love Across the UK 💕
+            </h1>
+            <p className="text-lg mb-6 text-white">
+              FinestNeedle connects hearts across the UK. Whether it's
+              friendship or forever, start your journey here.
+            </p>
+            <Link
+              href="/signup"
+              className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* How It Works */}
-      <section className="py-20 px-6 bg-white text-center">
-        <h2 className="text-3xl font-bold mb-12">How It Works</h2>c
-        <div className="grid gap-10 sm:grid-cols-3 max-w-5xl mx-auto">
-          <div>
-            <h3 className="text-xl font-semibold mb-2">1. Create Your Profile</h3>
-            <p className="text-gray-600">Tell us who you are and what you're looking for.</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-2">2. Browse Matches</h3>
-            <p className="text-gray-600">Explore verified profiles across the UK.</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-2">3. Start Chatting</h3>
-            <p className="text-gray-600">Connect, message, and build something real.</p>
-          </div>
+      <section className="py-20 px-6 bg-pink-100 text-center">
+        <h2 className="text-4xl text-pink-600 font-bold mb-12">How It Works</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto text-left">
+          {howItWorks.map(({ emoji, title, description }, i) => (
+            <div
+              key={i}
+              className="bg-white/30 backdrop-blur p-6 rounded-xl shadow-md hover:shadow-lg transition"
+            >
+              <h3 className="text-xl font-semibold text-pink-600 mb-2">
+                <span className="text-3xl mr-2">{emoji}</span>
+                {title}
+              </h3>
+              <p className="text-gray-700">{description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6 bg-[var(--accent-light)] text-center">
-        <h2 className="text-3xl font-bold mb-12">Success Stories</h2>
-        <div className="grid gap-10 sm:grid-cols-2 max-w-4xl mx-auto">
-          <blockquote className="bg-white p-6 rounded-xl shadow text-left">
-            <p className="italic text-gray-800">"We matched in two days and met in person within a week. Now we're engaged!"</p>
-            <footer className="mt-4 text-sm text-gray-600">– Sarah & James, London</footer>
-          </blockquote>
-          <blockquote className="bg-white p-6 rounded-xl shadow text-left">
-            <p className="italic text-gray-800">"I was skeptical... now I’m grateful. We just moved in together!"</p>
-            <footer className="mt-4 text-sm text-gray-600">– Aisha & Tom, Manchester</footer>
-          </blockquote>
-        </div>
-      </section>
+      <TestimonialsMarquee />
 
       {/* Call to Action */}
       <section className="py-16 px-6 bg-white text-center">
-        <h2 className="text-2xl font-bold mb-4">Your Person Might Be One Click Away</h2>
+        <h2 className="text-2xl text-pink-600 font-bold mb-4">
+          Your Person Might Be One Click Away
+        </h2>
         <Link
           href="/signup"
           className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
@@ -91,7 +106,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="text-sm text-center py-6 text-gray-500 bg-white">
-        © {new Date().getFullYear()} UK Match. All rights reserved.
+        © {new Date().getFullYear()} FinestNeedle. All rights reserved.
       </footer>
     </div>
   );

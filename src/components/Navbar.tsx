@@ -16,7 +16,7 @@ export default function Navbar() {
   const linkClass = (href: string) =>
     pathname === href
       ? 'bg-pink-500 text-white px-4 py-2 rounded-full'
-      : 'hover:text-pink-500 transition';
+      : 'px-4 sm:px-0 hover:text-pink-500 transition';
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur shadow-md">
