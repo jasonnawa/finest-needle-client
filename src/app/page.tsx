@@ -53,10 +53,10 @@ export default function Home() {
         <div className="relative z-10">
           <div className="bg-white/20 p-6 rounded-xl shadow-md max-w-2xl text-left ml-4 sm:ml-20">
             <h1 className="text-4xl font-bold mb-4 text-white">
-              Find Love Across the UK 💕
+              Find Love Across the World 💕
             </h1>
             <p className="text-lg mb-6 text-white">
-              FinestNeedle connects hearts across the UK. Whether it's
+              FinestNeedle connects hearts across the world. Whether it's
               friendship or forever, start your journey here.
             </p>
             <Link
