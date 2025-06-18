@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { countries } from "countries-list";
+import { registerUser } from "@/api/users/userService";
 
 const countryList = Object.values(countries).map((c) => c.name);
 
@@ -35,18 +36,18 @@ const personalSchema = z.object({
   location: z.string().min(1, "Location is required"),
   religion: z.string().min(1, "Religion is required"),
   goals: z.string().min(1, "Relationship goals are required"),
-  phone: z.string().min(10, "Phone number is required"),
+  phoneNumber: z.string().min(10, "Phone number is required"),
   country: z.string().min(1, "Country is required"),
   address: z.string().min(1, "Address is required"),
   city: z.string().min(1, "City is required"),
   state: z.string().min(1, "State is required"),
   postalCode: z.string().min(1, "Postal code is required"),
 
-  preferredLocation: z.string().min(1, "Preferred location is required"),
-  personalType: z.string().min(1, "Personal type is required"),
-  loveLanguage: z.string().min(1, "Love language is required"),
-  lifestyle: z.string().min(1, "Lifestyle is required"),
-  spouseCountry: z.string().min(1, "Spouse country is required"),
+  preferenceLocation: z.string().min(1, "Preferred location is required"),
+  preferenceType: z.string().min(1, "Personal type is required"),
+  preferenceLoveLanguage: z.string().min(1, "Love language is required"),
+  preferenceLifestyle: z.string().min(1, "preferenceLifestyle is required"),
+  preferenceCountry: z.string().min(1, "Spouse country is required"),
 
   agree: z.literal(true, {
     errorMap: () => ({
@@ -69,17 +70,17 @@ export default function SignUp() {
       location: "",
       religion: "",
       goals: "",
-      phone: "",
+      phoneNumber: "",
       country: "",
       address: "",
       city: "",
       state: "",
       postalCode: "",
-      preferredLocation: "",
-      personalType: "",
-      loveLanguage: "",
-      lifestyle: "",
-      spouseCountry: "",
+      preferenceLocation: "",
+      preferenceType: "",
+      preferenceLoveLanguage: "",
+      preferenceLifestyle: "",
+      preferenceCountry: "",
       agree: undefined,
     },
   });
@@ -88,21 +89,21 @@ export default function SignUp() {
     const valid = await methods.trigger(
       step === 1
         ? [
-            "firstName",
-            "lastName",
-            "email",
-            "age",
-            "gender",
-            "location",
-            "religion",
-            "goals",
-            "phone",
-            "country",
-            "address",
-            "city",
-            "state",
-            "postalCode",
-          ]
+          "firstName",
+          "lastName",
+          "email",
+          "age",
+          "gender",
+          "location",
+          "religion",
+          "goals",
+          "phoneNumber",
+          "country",
+          "address",
+          "city",
+          "state",
+          "postalCode",
+        ]
         : []
     );
     if (valid) setStep((s) => s + 1);
@@ -110,8 +111,14 @@ export default function SignUp() {
 
   const onBack = () => setStep((s) => s - 1);
 
-  const onSubmit = methods.handleSubmit((data) => {
-    console.log("Final form:", data);
+  const onSubmit = methods.handleSubmit(async (formData) => {
+    console.log("Final form:", formData);
+    try {
+      const response = await registerUser(formData);
+      console.log('Registered:', response);
+    } catch (err) {
+      console.error('Registration failed', err);
+    }
   });
 
   const {
@@ -193,8 +200,8 @@ export default function SignUp() {
                         <SelectValue placeholder="Gender" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="male">Male</SelectItem>
-                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="Male">Male</SelectItem>
+                        <SelectItem value="Female">Female</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.gender && (
@@ -239,13 +246,13 @@ export default function SignUp() {
                 <div className="flex gap-4">
                   <div className="w-full">
                     <Input
-                      {...register("phone")}
-                      placeholder="Phone Number"
+                      {...register("phoneNumber")}
+                      placeholder="PhoneNumber Number"
                       type="tel"
                     />
-                    {errors.phone && (
+                    {errors.phoneNumber && (
                       <p className="text-red-500 text-sm">
-                        {errors.phone.message}
+                        {errors.phoneNumber.message}
                       </p>
                     )}
                   </div>
@@ -320,51 +327,51 @@ export default function SignUp() {
               <>
                 <span className=" block mb-3">
                   <Input
-                    {...register("preferredLocation")}
+                    {...register("preferenceLocation")}
                     placeholder="Preferred Location"
                   />
-                  {errors.preferredLocation && (
+                  {errors.preferenceLocation && (
                     <p className="text-red-500 text-sm">
-                      {errors.preferredLocation.message}
+                      {errors.preferenceLocation.message}
                     </p>
                   )}
                 </span>
 
                 <span className=" block mb-3">
                   <Input
-                    {...register("personalType")}
+                    {...register("preferenceType")}
                     placeholder="Personal Type"
                   />
-                  {errors.personalType && (
+                  {errors.preferenceType && (
                     <p className="text-red-500 text-sm">
-                      {errors.personalType.message}
+                      {errors.preferenceType.message}
                     </p>
                   )}
                 </span>
 
                 <span className=" block mb-3">
                   <Input
-                    {...register("loveLanguage")}
+                    {...register("preferenceLoveLanguage")}
                     placeholder="Love Language"
                   />
-                  {errors.loveLanguage && (
+                  {errors.preferenceLoveLanguage && (
                     <p className="text-red-500 text-sm">
-                      {errors.loveLanguage.message}
+                      {errors.preferenceLoveLanguage.message}
                     </p>
                   )}
                 </span>
 
                 <span className=" block mb-3">
-                  <Input {...register("lifestyle")} placeholder="Lifestyle" />
-                  {errors.lifestyle && (
+                  <Input {...register("preferenceLifestyle")} placeholder="preferenceLifestyle" />
+                  {errors.preferenceLifestyle && (
                     <p className="text-red-500 text-sm">
-                      {errors.lifestyle.message}
+                      {errors.preferenceLifestyle.message}
                     </p>
                   )}
                 </span>
 
                 <span className=" block mb-3">
-                  <Select onValueChange={(v) => setValue("spouseCountry", v)}>
+                  <Select onValueChange={(v) => setValue("preferenceCountry", v)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Spouse Preferred Country" />
                     </SelectTrigger>
@@ -376,9 +383,9 @@ export default function SignUp() {
                       ))}
                     </SelectContent>
                   </Select>
-                  {errors.spouseCountry && (
+                  {errors.preferenceCountry && (
                     <p className="text-red-500 text-sm">
-                      {errors.spouseCountry.message}
+                      {errors.preferenceCountry.message}
                     </p>
                   )}
                 </span>

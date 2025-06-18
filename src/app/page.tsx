@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % bannerImages.length);
-    }, 7000); // switch every 6 seconds
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
