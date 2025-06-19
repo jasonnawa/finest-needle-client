@@ -2,6 +2,7 @@
 
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {toast} from "sonner";
 import { z } from "zod";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -24,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { countries } from "countries-list";
 import { registerUser } from "@/api/users/userService";
+import SignUpPayment from "@/components/SignUpPayment";
 
 const countryList = Object.values(countries).map((c) => c.name);
 
@@ -114,8 +116,17 @@ export default function SignUp() {
   const onSubmit = methods.handleSubmit(async (formData) => {
     console.log("Final form:", formData);
     try {
+      //validate user data for payment
       const response = await registerUser(formData);
       console.log('Registered:', response);
+      if(!response.status){
+        //error toast
+        toast.error(response.message || 'An error has occurred',{
+          duration: 3000,
+        })
+      }else{
+        setStep((s) => s + 1);
+      }
     } catch (err) {
       console.error('Registration failed', err);
     }
@@ -129,7 +140,9 @@ export default function SignUp() {
   } = methods;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 text-center px-6">
+    <>
+    {step !== 3?
+    (<div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 text-center px-6">
       <div className="bg-white/70 backdrop-blur p-8 rounded-xl shadow-xl w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-pink-600 mb-2">
           {step === 1
@@ -444,13 +457,18 @@ export default function SignUp() {
                 </Button>
               ) : (
                 <Button type="submit" disabled={!!errors.agree}>
-                  Submit
+                  Make Payment
                 </Button>
               )}
             </div>
           </form>
         </FormProvider>
       </div>
-    </div>
+    </div>)
+  :(
+    <SignUpPayment />
+  )}
+
+    </>
   );
 }
