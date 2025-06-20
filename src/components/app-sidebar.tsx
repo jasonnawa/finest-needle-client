@@ -32,11 +32,11 @@ import {
 
 const data = {
   navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: IconDashboard,
-    },
+    //{
+    //  title: "Dashboard",
+    //  url: "/dashboard",
+    //  icon: IconDashboard,
+   // },
     {
       title: "Matches",
       url: "/matches",

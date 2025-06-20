@@ -13,7 +13,7 @@ export default function SignInForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    window.location.assign('/dashboard');
+    window.location.assign('/matches');
 
     //TODO: login feature with auth
     e.preventDefault();

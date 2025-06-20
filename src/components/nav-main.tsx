@@ -28,6 +28,7 @@ export function NavMain({
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           <SidebarMenuItem className="items-center">
+            <Link href='/create-match'>
             <SidebarMenuButton
               tooltip="Create Match"
               className="w-contain bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
@@ -35,6 +36,7 @@ export function NavMain({
               <IconCirclePlusFilled />
               <span>Create Match</span>
             </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
