@@ -5,15 +5,8 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: false,
+  withCredentials: true,
 });
 
-apiClient.interceptors.response.use(
-  response => response,
-  error => {
-    console.error('API error:', error.response?.data || error.message);
-    return Promise.reject(error);
-  }
-);
 
 export default apiClient;

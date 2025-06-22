@@ -1,31 +1,39 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { signIn } from '@/api/auth/authService';
+import { useState } from "react";
+import { signIn } from "@/api/auth/authService";
+import { toast } from "sonner";
+import { useRouter } from 'next/navigation';
 
 export default function SignInForm() {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    window.location.assign('/matches');
-
-    //TODO: login feature with auth
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const user = await signIn(form);
-      console.log('Signed in:', user);
-      // Save token, redirect, etc.
+      const response = await signIn(form);
+      if (response.status) {
+        toast.success("Signed in!", { duration: 2000 });
+        setTimeout(() => {
+          router.push("/matches");
+        }, 2000);
+      } else {
+        toast.error(response.message || "Error signing in", {
+          duration: 3000,
+        });
+      }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Sign-in failed');
+      setError(err.response?.data?.message || "Sign-in failed");
     } finally {
       setLoading(false);
     }
@@ -57,7 +65,7 @@ export default function SignInForm() {
         disabled={loading}
         className="w-full bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
       >
-        {loading ? 'Signing in...' : 'Sign In'}
+        {loading ? "Signing in..." : "Sign In"}
       </button>
     </form>
   );
