@@ -14,6 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { SiteHeader } from "@/components/site-header";
 import { getAllUsers } from "@/api/users/userService";
 import { User } from "@/api/users/userTypes";
+import { toast } from "sonner";
 import { Spinner } from "@/components/Spinner";
 
 export default function UserManagementPage() {
@@ -22,12 +23,28 @@ export default function UserManagementPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllUsers().then((data) => {
-      setUsers(data.data);
-      setLoading(false);
-    });
+    const fetchUsers = async () => {
+      try {
+        const data = await getAllUsers();
+  
+        if (data.status) {
+          setUsers(data.data);
+        } else {
+          toast.error(data.message || "Failed to fetch users", {
+            duration: 3000,
+          });
+        }
+      } catch (err: any) {
+        toast.error(err.response?.data?.message || "Error fetching users", {
+          duration: 3000,
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchUsers();
   }, []);
-
   return (
     <>
       {loading ? (

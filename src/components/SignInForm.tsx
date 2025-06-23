@@ -23,7 +23,7 @@ export default function SignInForm() {
     try {
       const response = await signIn(form);
       if (response.status) {
-        toast.success("Signed in!", { duration: 2000 });
+        toast.success("Signed in!", { duration: 2000, });
         setTimeout(() => {
           router.push("/matches");
         }, 2000);
