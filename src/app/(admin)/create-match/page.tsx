@@ -27,6 +27,7 @@ import {
 import { getAllUsers } from "@/api/users/userService";
 import { User } from "@/api/users/userTypes";
 import { createMatch } from "@/api/matches/matchService";
+import Image from "next/image";
 
 export default function CreateMatchPage() {
   const [selectedMale, setSelectedMale] = useState<User | null>(null);
@@ -129,6 +130,12 @@ export default function CreateMatchPage() {
                       <DialogTitle>
                         {profile.firstName} {profile.lastName}
                       </DialogTitle>
+                      <Image
+                           src={profile.profileImage || '/placeholder.png'}  // Fallback if no image
+                             alt="Profile Image"
+                              width={100}
+                                      height={100}
+                            />
                       <div className="text-sm space-y-1">
                         <div>Email: {profile.email}</div>
                         <div>Age: {profile.age}</div>
@@ -183,6 +190,12 @@ export default function CreateMatchPage() {
                       <DialogTitle>
                         {profile.firstName} {profile.lastName}
                       </DialogTitle>
+                      <Image
+                           src={profile.profileImage || '/placeholder.png'}  // Fallback if no image
+                             alt="Profile Image"
+                              width={100}
+                                      height={100}
+                            />
                       <div className="text-sm space-y-1">
                         <div>Email: {profile.email}</div>
                         <div>Age: {profile.age}</div>

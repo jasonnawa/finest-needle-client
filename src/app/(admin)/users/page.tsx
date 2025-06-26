@@ -16,6 +16,7 @@ import { getAllUsers } from "@/api/users/userService";
 import { User } from "@/api/users/userTypes";
 import { toast } from "sonner";
 import { Spinner } from "@/components/Spinner";
+import Image from "next/image"
 
 export default function UserManagementPage() {
   const [selectedUser, setSelectedUser] = useState<any | null>(null);
@@ -59,17 +60,28 @@ export default function UserManagementPage() {
             {users.map((user, index) => (
               <Dialog key={index}>
                 <DialogTrigger asChild>
-                  <Card
-                    onClick={() => setSelectedUser(user)}
-                    className="p-4 hover:bg-muted cursor-pointer"
-                  >
-                    <div className="font-semibold">
-                      {user.firstName} {user.lastName} ({user.gender[0]})
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {user.email}
-                    </div>
-                  </Card>
+                <Card
+                  onClick={() => setSelectedUser(user)}
+                  className="p-4 hover:bg-muted cursor-pointer flex items-center gap-4"
+                >
+              <div className="w-24 h-24 overflow-hidden rounded-md">
+  <Image
+    src={user.profileImage || '/placeholder.png'}
+    alt="Profile Image"
+    width={96}
+    height={96}
+    className="object-cover w-full h-full"
+  />
+</div>
+
+            <div>
+              <div className="font-semibold text-center">
+                 {user.firstName} {user.lastName} ({user.gender[0]})
+              </div>
+              <div className="text-sm text-muted-foreground">{user.email}</div>
+            </div>
+          </Card>
+
                 </DialogTrigger>
 
                 <DialogContent className="max-w-lg">
@@ -78,6 +90,14 @@ export default function UserManagementPage() {
   </DialogTitle>
   <ScrollArea className="h-[60vh] pr-4">
     <div className="mt-2 space-y-2 text-sm">
+
+      <Image
+        src={user.profileImage || '/placeholder.png'}  // Fallback if no image
+        alt="Profile Image"
+        width={100}
+        height={100}
+      />
+
 
       <Field label="Email" value={user.email} />
       <Field label="Age" value={user.age} />

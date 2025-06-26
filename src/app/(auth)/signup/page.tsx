@@ -45,6 +45,12 @@ const personalSchema = z.object({
   state: z.string().min(1, "State is required"),
   postalCode: z.string().min(1, "Postal code is required"),
 
+  profileImage: z
+  .any()
+  .refine((file) => file instanceof File || file?.[0] instanceof File, {
+    message: "Image is required",
+  }),
+
   preferenceLocation: z.string().min(1, "Preferred location is required"),
   preferenceType: z.string().min(1, "Personal type is required"),
   preferenceLoveLanguage: z.string().min(1, "Love language is required"),
@@ -60,6 +66,7 @@ const personalSchema = z.object({
 
 export default function SignUp() {
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false)
   const methods = useForm({
     resolver: zodResolver(personalSchema),
     mode: "onTouched",
@@ -113,12 +120,29 @@ export default function SignUp() {
 
   const onBack = () => setStep((s) => s - 1);
 
-  const onSubmit = methods.handleSubmit(async (formData) => {
-    console.log("Final form:", formData);
+  const onSubmit = async (formData: any) => {
+    setIsLoading(true)
     try {
+      const fileList = formData.profileImage;
+      const imageFile = fileList?.[0];
+  
+      if (!imageFile) {
+        toast.error("Profile image is required", { duration: 3000 });
+        return;
+      }
+  
+      // Build FormData
+      const formPayload = new FormData();
+  
+      for (const key in formData) {
+        if (key !== "profileImage") {
+          formPayload.append(key, formData[key]);
+        }
+      }
+  
+      formPayload.append("profileImage", imageFile);
       //validate user data for payment
-      const response = await registerUser(formData);
-      console.log('Registered:', response);
+      const response = await registerUser(formPayload);
       if(!response.status){
         //error toast
         toast.error(response.message || 'An error has occurred',{
@@ -129,8 +153,13 @@ export default function SignUp() {
       }
     } catch (err) {
       console.error('Registration failed', err);
+      toast.error( 'An error has occurred',{
+        duration: 3000,
+      })
+    }finally{
+      setIsLoading(false)
     }
-  });
+  };
 
   const {
     register,
@@ -139,6 +168,24 @@ export default function SignUp() {
     control,
   } = methods;
 
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+
+  const fileRegister = register("profileImage", {
+    onChange: (e) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewUrl(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setPreviewUrl(null);
+      }
+    },
+  });
+  
   return (
     <>
     {step !== 3?
@@ -156,7 +203,7 @@ export default function SignUp() {
         </p>
 
         <FormProvider {...methods}>
-          <form onSubmit={onSubmit} className="space-y-4 text-left">
+          <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4 text-left">
             {step === 1 && (
               <>
                 <div className="flex gap-4">
@@ -193,6 +240,44 @@ export default function SignUp() {
                     </p>
                   )}
                 </div>
+
+                <div>
+      <p className="mb-2 font-medium">Profile Image</p>
+
+      <label
+  htmlFor="profileImage"
+  className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-pink-500 transition overflow-hidden mb-2"
+>
+  {previewUrl ? (
+    <img
+      src={previewUrl}
+      alt="Image Preview"
+      className="object-cover w-full h-full"
+    />
+  ) : (
+    <>
+      <span className="text-gray-500">Click to select an image</span>
+      <span className="text-xs text-gray-400">(Only image files allowed)</span>
+    </>
+  )}
+
+  <Input
+    id="profileImage"
+    type="file"
+    accept="image/*"
+    {...fileRegister}
+    className="hidden"
+  />
+</label>
+
+
+      {errors.profileImage && (
+        <p className="text-sm text-red-500 mt-1">
+          {String(errors.profileImage.message)}
+        </p>
+      )}
+    </div>
+
 
                 <div className="flex gap-4">
                   <div className="w-full">
@@ -457,7 +542,7 @@ export default function SignUp() {
                 </Button>
               ) : (
                 <Button type="submit" disabled={!!errors.agree}>
-                  Make Payment
+                  {isLoading? 'loading..': 'Make Payment' }
                 </Button>
               )}
             </div>

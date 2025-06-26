@@ -2,8 +2,12 @@ import apiClient from '@/lib/apiClient';
 import { RegisterUserDTO } from './userTypes';
 
 
-export const registerUser = async (userData: RegisterUserDTO) => {
-  const response = await apiClient.post('/users/register', userData);
+export const registerUser = async (userData: any) => {
+  const response = await apiClient.post('/users/register', userData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
   return response.data;
 };
 

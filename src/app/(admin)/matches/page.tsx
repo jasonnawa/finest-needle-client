@@ -15,6 +15,7 @@ import { Spinner } from "@/components/Spinner";
 import Link from "next/link";
 import { Match } from "@/api/matches/matchTypes";
 import { getMatches } from "@/api/matches/matchService";
+import Image from "next/image";
 
 export default function MatchesPage() {
   const [selectedMatch, setSelectedMatch] = useState<any | null>(null);
@@ -66,6 +67,12 @@ export default function MatchesPage() {
                     <div className="space-y-5">
                       {[match.userOne, match.userTwo].map((user, i) => (
                         <div key={i} className="border rounded-lg p-4">
+                          <Image
+                              src={user.profileImage || '/placeholder.png'}  // Fallback if no image
+                              alt="Profile Image"
+                              width={100}
+                              height={100}
+                            />
                           <h2 className="font-semibold text-lg">
                             {user.firstName} {user.lastName}
                           </h2>

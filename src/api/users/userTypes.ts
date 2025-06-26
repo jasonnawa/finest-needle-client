@@ -14,6 +14,7 @@ export interface CreateUserDTO {
   country?: string;
   address?: string;
   location?: string;
+  profileImage?: any;
   city?: string;
   state?: string;
   postalCode?: string;
@@ -55,5 +56,6 @@ export interface User{
   religion?: string;
   relationshipGoals?: string;
   password?: string;
-  preference: Preference
+  preference?: Preference
+  profileImage?: string;
 }
