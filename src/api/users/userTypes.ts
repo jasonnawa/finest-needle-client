@@ -58,4 +58,5 @@ export interface User{
   password?: string;
   preference?: Preference
   profileImage?: string;
+  isMatched?:Boolean;
 }

@@ -25,10 +25,10 @@ import {
 } from "@/components/ui/select";
 import { countries } from "countries-list";
 import { registerUser } from "@/api/users/userService";
-import SignUpPayment from "@/components/SignUpPayment";
+import { startCheckout } from "@/api/stripe/stripeService";
 
 const countryList = Object.values(countries).map((c) => c.name);
-
+const FRONTEND = process.env.NEXT_PUBLIC_FRONTEND_URL
 const personalSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -149,7 +149,9 @@ export default function SignUp() {
           duration: 3000,
         })
       }else{
-        setStep((s) => s + 1);
+        //redirect user to stripe payment
+        await startCheckout(response.data._id, 5000, 'Registeration', `${FRONTEND}/payment/success`,  `${FRONTEND}/payment/failure`)
+        //setStep((s) => s + 1);
       }
     } catch (err) {
       console.error('Registration failed', err);
@@ -551,7 +553,7 @@ export default function SignUp() {
       </div>
     </div>)
   :(
-    <SignUpPayment />
+    <>ece3</>
   )}
 
     </>

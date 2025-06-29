@@ -5,6 +5,7 @@ export interface CreateMatchDTO {
 }
 
 export interface Match {
+  _id: string;
   userOne: User;
   userTwo: User;
 }

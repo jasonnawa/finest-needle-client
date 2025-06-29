@@ -36,8 +36,8 @@ export default function CreateMatchPage() {
   const [users, setUsers] = useState<User[] | []>([]);
   const [loading, setLoading] = useState(true);
 
-  const males = users.filter((p) => p.gender === "Male");
-  const females = users.filter((p) => p.gender === "Female");
+  const males = users.filter((p) => p.gender === "Male" && p.isMatched !== true);
+  const females = users.filter((p) => p.gender === "Female" && p.isMatched !== true);
 
   useEffect(() => {
     getAllUsers().then((data) => {
