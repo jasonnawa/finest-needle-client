@@ -296,7 +296,7 @@ export default function SignUp() {
                   </div>
                   <div className="w-full">
                     <Select onValueChange={(v) => setValue("gender", v)}>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Gender" />
                       </SelectTrigger>
                       <SelectContent>
@@ -347,7 +347,7 @@ export default function SignUp() {
                   <div className="w-full">
                     <Input
                       {...register("phoneNumber")}
-                      placeholder="PhoneNumber Number"
+                      placeholder="Phone Number"
                       type="tel"
                     />
                     {errors.phoneNumber && (
@@ -358,7 +358,7 @@ export default function SignUp() {
                   </div>
                   <div className="w-full">
                     <Select onValueChange={(v) => setValue("country", v)}>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Country" />
                       </SelectTrigger>
                       <SelectContent>
@@ -462,7 +462,7 @@ export default function SignUp() {
                 </span>
 
                 <span className=" block mb-3">
-                  <Input {...register("preferenceLifestyle")} placeholder="preferenceLifestyle" />
+                  <Input {...register("preferenceLifestyle")} placeholder="Lifestyle" />
                   {errors.preferenceLifestyle && (
                     <p className="text-red-500 text-sm">
                       {errors.preferenceLifestyle.message}
@@ -472,8 +472,8 @@ export default function SignUp() {
 
                 <span className=" block mb-3">
                   <Select onValueChange={(v) => setValue("preferenceCountry", v)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Spouse Preferred Country" />
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Country" />
                     </SelectTrigger>
                     <SelectContent>
                       {countryList.map((c) => (
@@ -490,45 +490,39 @@ export default function SignUp() {
                   )}
                 </span>
 
-                {/* ✅ Terms & Conditions Checkbox with Modal */}
-                <span className="flex items-start gap-2 mb-3">
-                  <Controller
-                    name="agree"
-                    control={control}
-                    rules={{
-                      required: "You must accept the terms and conditions",
-                    }}
-                    render={({ field }) => (
-                      <>
-                        <Checkbox
-                          id="agree"
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                        <label
-                          htmlFor="agree"
-                          className="text-sm text-gray-700"
-                        >
-                          I agree to the{" "}
-                          <Dialog>
-                            <DialogTrigger className="text-pink-600 underline cursor-pointer hover:text-pink-800">
-                              Terms and Conditions
-                            </DialogTrigger>
-                            <DialogContent className="w-full max-w-2xl max-h-[70vh] overflow-y-auto rounded-lg p-6 sm:mx-auto sm:my-8 sm:rounded-xl sm:p-8">
-                              <DialogTitle className="text-xl font-bold text-pink-600 mb-4">
-                                Terms and Conditions
-                              </DialogTitle>
-                              <TermsAndConditions />
-                            </DialogContent>
-                          </Dialog>
-                        </label>
-                      </>
-                    )}
-                  />
-                </span>
-                {errors.agree && (
-                  <p className="text-red-500 text-sm">{errors.agree.message}</p>
-                )}
+          {/* ✅ Terms & Conditions Checkbox with Inline Scroll Area */}
+<span className="flex flex-col gap-2 mb-3">
+  {/* Inline scrollable terms box */}
+  <div className="max-h-64 overflow-y-auto border border-gray-200 rounded p-4 text-sm text-gray-700">
+    <TermsAndConditions />
+  </div>
+</span>
+
+
+<div className="flex items-start gap-2">
+    <Controller
+      name="agree"
+      control={control}
+      rules={{
+        required: "You must accept the terms and conditions",
+      }}
+      render={({ field }) => (
+        <Checkbox
+          id="agree"
+          checked={field.value}
+          onCheckedChange={field.onChange}
+        />
+      )}
+    />
+    <label htmlFor="agree" className="text-sm text-gray-700">
+      I agree to the Terms and Conditions
+    </label>
+  </div>
+
+  {errors.agree && (
+    <p className="text-red-500 text-sm">{errors.agree.message}</p>
+  )}
+
               </>
             )}
 
