@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import TestimonialsMarquee from "@/components/TestimonialsMarquee";
-const bannerImages = ["/banner3.jpg", "/banner5.jpg"];
+const bannerImages = ["/banner3.jpg", "/banner5.jpg", "/middle_aged_love.jpg"];
 
 export default function Home() {
   const [bgIndex, setBgIndex] = useState(0);
@@ -61,7 +61,7 @@ export default function Home() {
             </p>
             <Link
               href="/signup"
-              className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
+              className="bg-[#ff4d88] text-black px-6 py-3 rounded-full font-semibold hover:bg-[var(--accent)] transition"
             >
               Get Started
             </Link>
@@ -100,7 +100,7 @@ export default function Home() {
           href="/signup"
           className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
         >
-          Join Now – It’s Free!
+          Join Now!
         </Link>
       </section>
 
