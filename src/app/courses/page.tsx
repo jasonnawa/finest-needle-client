@@ -7,9 +7,26 @@ import { getAllCourses } from "@/api/courses/courseService";
 import { CourseDTO } from "@/api/courses/courseTypes";
 const bannerImages = ["/banner3.jpg", "/banner5.jpg", "/middle_aged_love.jpg"];
 
+const affiliateCourses = [
+    {
+        _id: 'wrf3fq',
+        title: 'Digital Boss Academy Vol 1',
+        description: '',
+        price: 111,
+        affiliateLink: 'https://shop.beacons.ai/billionairebrooklynn/7df76d31-ca95-4bcc-a88c-a9ded145dcad?affiliateKey=gAAAAABn0WsvsNSy_E6GdMlJ2wHinvnmIY9e-mSqLXN7n7bWGnYg9MHRGe3fHrgH7RhRwTEGZEK6PAGussyBb4FbUY6jOPMkpuKsKwzlVthO3bWx6viuzEp9j7twR82TS7j0vYY0oBUNuYgX6n1claJrfYMD1ha1vNDKoUBaUv0j7INmOh_N2Nuyl3j1OM_sNU8Z6tcXfT9LbeLdguXv31qw8mPZyCyD3w%3D%3D&pageViewSource=lib_view&referrer=https%3A%2F%2Ffinestneedle.com%2F&show_back_button=true'
+    },
+        {
+        _id: 'wrf3ffrdeq',
+        title: 'Digital Boss Academy Vol 2',
+        description: '',
+        price: 222,
+        affiliateLink: 'https://shop.beacons.ai/billionairebrooklynn/dd814f0d-1b26-4c9a-bd1b-5765ce59b457?affiliateKey=gAAAAABn0WwNtrnYt52HncbzQgPVNQn_MLTBeWjxvXZJnu5bAx0kosJD3R4hYCaDB-tEl6iB153HPrA_2fs9ruOuc4gJcnHRLhLDn7Dbd_4TuMuxrYia_nQ_fIuSWUeDz_4WkRf7tTBFImTRNxhmbwk6js-e870pNZ4vv3GCbu-pKkv2sUA77FgEdDZJyEtnuAmeBCV9WcIyfKNC12OVw4FjCdEXCSINyg%3D%3D&pageViewSource=lib_view&referrer=https%3A%2F%2Ffinestneedle.com%2F&show_back_button=true'
+    }
+]
+
 export default function Courses() {
     const [bgIndex, setBgIndex] = useState(0);
-    const [courses, setCourses] = useState<CourseDTO[]>([])
+    const [courses, setCourses] = useState<CourseDTO[]>(affiliateCourses)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -24,7 +41,7 @@ export default function Courses() {
             try {
                 const res = await getAllCourses();
                 if (res.status) {
-                    setCourses(res.data);
+                    setCourses([...affiliateCourses, ...res.data]);
                 }
             } catch (e) {
                 console.error(e);
@@ -76,7 +93,7 @@ export default function Courses() {
                                 <div className="mt-auto flex items-center justify-between">
                                     <p className="text-pink-600 font-bold text-lg">€{course.price}</p>
                                     <Link
-                                        href={`/courses/${course._id}`}
+                                        href={course.affiliateLink ? course.affiliateLink: `/courses/${course._id}`}
                                         className="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm"
                                     >
                                         View Course

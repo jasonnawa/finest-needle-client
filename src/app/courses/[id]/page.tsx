@@ -57,41 +57,41 @@ export default function CourseDescriptionPage({ params }: PageProps) {
   };
 
   const markdownStyles = {
-  paragraph: {
-    marginBottom: '1em',
-    lineHeight: '1.6',
-  },
-  heading: {
-    marginTop: '1.5em',
-    marginBottom: '0.5em',
-  },
-  list: {
-    paddingLeft: '1.5em',
-    marginBottom: '1em',
-  },
-  listItem: {
-    marginBottom: '0.5em',
-  },
-};
+    paragraph: {
+      marginBottom: '1em',
+      lineHeight: '1.6',
+    },
+    heading: {
+      marginTop: '1.5em',
+      marginBottom: '0.5em',
+    },
+    list: {
+      paddingLeft: '1.5em',
+      marginBottom: '1em',
+    },
+    listItem: {
+      marginBottom: '0.5em',
+    },
+  };
 
   return (
     <section className="min-h-screen bg-white px-6 py-20 flex items-center justify-center">
       {course && <div className="max-w-6xl w-full bg-gray-100 p-10 rounded-xl shadow-lg">
         <h1 className="text-3xl font-bold mb-4 text-pink-600">{course.title}</h1>
-         <ReactMarkdown
-      components={{
-        p: ({ children }) => <p style={markdownStyles.paragraph}>{children}</p>,
-        h1: ({ children }) => <h1 style={markdownStyles.heading}>{children}</h1>,
-        h2: ({ children }) => <h2 style={markdownStyles.heading}>{children}</h2>,
-        h3: ({ children }) => <h3 style={markdownStyles.heading}>{children}</h3>,
-        ul: ({ children }) => <ul style={markdownStyles.list}>{children}</ul>,
-        ol: ({ children }) => <ol style={markdownStyles.list}>{children}</ol>,
-        li: ({ children }) => <li style={markdownStyles.listItem}>{children}</li>,
-      }}
-    >
-      {course.description}
-    </ReactMarkdown>
-        
+        <ReactMarkdown
+          components={{
+            p: ({ children }) => <p style={markdownStyles.paragraph}>{children}</p>,
+            h1: ({ children }) => <h1 style={markdownStyles.heading}>{children}</h1>,
+            h2: ({ children }) => <h2 style={markdownStyles.heading}>{children}</h2>,
+            h3: ({ children }) => <h3 style={markdownStyles.heading}>{children}</h3>,
+            ul: ({ children }) => <ul style={markdownStyles.list}>{children}</ul>,
+            ol: ({ children }) => <ol style={markdownStyles.list}>{children}</ol>,
+            li: ({ children }) => <li style={markdownStyles.listItem}>{children}</li>,
+          }}
+        >
+          {course.description}
+        </ReactMarkdown>
+
         <div className="mb-6">
           <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
             Enter your email to continue:
