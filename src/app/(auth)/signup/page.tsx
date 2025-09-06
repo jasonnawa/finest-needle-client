@@ -25,10 +25,9 @@ import {
 } from "@/components/ui/select";
 import { countries } from "countries-list";
 import { registerUser } from "@/api/users/userService";
-import { startCheckout } from "@/api/stripe/stripeService";
+import PaypalPayment from "@/components/paypal-modal";
 
 const countryList = Object.values(countries).map((c) => c.name);
-const FRONTEND = process.env.NEXT_PUBLIC_FRONTEND_URL
 const personalSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -149,9 +148,10 @@ export default function SignUp() {
           duration: 3000,
         })
       }else{
-        //redirect user to stripe payment
-        await startCheckout(response.data._id, 5000, 'Registeration', `${FRONTEND}/payment/success`,  `${FRONTEND}/payment/failure`)
-        //setStep((s) => s + 1);
+        // redirect user to stripe payment
+        // await startCheckout(response.data._id, 5000, 'Registeration', `${FRONTEND}/payment/success`,  `${FRONTEND}/payment/failure`)
+        //show payment model
+         setStep((s) => s + 1);
       }
     } catch (err) {
       console.error('Registration failed', err);
@@ -190,7 +190,7 @@ export default function SignUp() {
   
   return (
     <>
-    {step !== 3?
+    {step === 1 || step === 2?
     (<div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 text-center px-6">
       <div className="bg-white/70 backdrop-blur p-8 rounded-xl shadow-xl w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-pink-600 mb-2">
@@ -547,7 +547,7 @@ export default function SignUp() {
       </div>
     </div>)
   :(
-    <>ece3</>
+     step === 3 && <PaypalPayment />
   )}
 
     </>

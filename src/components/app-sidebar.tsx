@@ -36,7 +36,7 @@ const data = {
     //  title: "Dashboard",
     //  url: "/dashboard",
     //  icon: IconDashboard,
-   // },
+    // },
     {
       title: "Matches",
       url: "/matches",
@@ -48,8 +48,13 @@ const data = {
     //   icon: IconChartBar,
     // },
     {
-      title: "Users",
-      url: "/users",
+      title: "Registered Users",
+      url: "/registered-users",
+      icon: IconUsers,
+    },
+    {
+      title: "Pending Users",
+      url: "/pending-users",
       icon: IconUsers,
     },
   ],

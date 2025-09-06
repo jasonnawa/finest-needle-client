@@ -127,7 +127,7 @@ export default function MatchesPage() {
                         <AlertDialogContent>
                           <AlertDialogHeader>
                             <AlertDialogTitle>
-                              Are you sure you want to match these users?
+                              Are you sure you want to un-match these users?
                             </AlertDialogTitle>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
