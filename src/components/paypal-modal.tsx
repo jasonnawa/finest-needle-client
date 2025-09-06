@@ -27,7 +27,7 @@ export default function PaypalPayment() {
                 <CardContent className="space-y-4 text-center">
                     {/* Info Box */}
                     <div className="bg-blue-50 p-4 rounded-xl text-sm text-gray-700">
-                        <p className="mb-2">Send payment to:</p>
+                        <p className="mb-2">Send $50 payment to:</p>
                         <p className="font-semibold text-blue-700">
                             victoriadaniel890@yahoo.com
                         </p>
@@ -42,7 +42,7 @@ export default function PaypalPayment() {
                         onClick={handleSubmit}
                         className="w-full"
                     >
-                        I have made payment
+                        I have paid
                     </Button>
                 </CardContent>
             </Card>
