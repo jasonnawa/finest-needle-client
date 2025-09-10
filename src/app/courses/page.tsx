@@ -41,7 +41,7 @@ export default function Courses() {
             try {
                 const res = await getAllCourses();
                 if (res.status) {
-                    //setCourses([...affiliateCourses, ...res.data]);
+                    setCourses([...affiliateCourses, ...res.data]);
                 }
             } catch (e) {
                 console.error(e);

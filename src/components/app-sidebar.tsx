@@ -42,11 +42,11 @@ const data = {
       url: "/matches",
       icon: IconListDetails,
     },
-    //{
-    //  title: "Analytics",
-    //   url: "#",
-    //   icon: IconChartBar,
-    // },
+    {
+      title: "Courses",
+       url: "/courses-management",
+       icon: IconChartBar,
+     },
     {
       title: "Registered Users",
       url: "/registered-users",

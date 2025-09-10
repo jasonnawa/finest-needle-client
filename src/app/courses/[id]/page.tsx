@@ -92,7 +92,28 @@ export default function CourseDescriptionPage({ params }: PageProps) {
           {course.description}
         </ReactMarkdown>
 
-        <div className="mb-6">
+
+        <div className="mb-6 bg-blue-50 p-6 rounded-xl shadow">
+          <h3 className="text-xl font-semibold mb-4 text-gray-800">How to Purchase</h3>
+          <ol className="list-decimal list-inside space-y-3 text-gray-700">
+            <li>
+              Pay <span className="font-semibold text-pink-600">€{course.price}</span> to our PayPal:{" "}
+              <span className="font-mono text-blue-700">finestneedle890@gmail.com</span>
+            </li>
+            <li>
+              In the payment description, include:
+              <ul className="list-disc list-inside ml-5 mt-1 text-gray-600">
+                <li>The <span className="font-semibold">course name</span></li>
+                <li>The <span className="font-semibold">email</span> where the course should be sent</li>
+              </ul>
+            </li>
+            <li>
+              Once payment is confirmed, <span className="font-semibold text-green-600">enjoy your course 🎉</span>
+            </li>
+          </ol>
+        </div>
+
+        {/* <div className="mb-6">
           <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
             Enter your email to continue:
           </label>
@@ -128,8 +149,10 @@ export default function CourseDescriptionPage({ params }: PageProps) {
               "Buy Now"
             )}
           </button>
+                 </div>
+          */}
 
-        </div>
+
       </div>}
 
       {!course && (

@@ -13,3 +13,10 @@ export const getCourseById = async (id: string) => {
   const response = await apiClient.get(`/courses/${id}`);
   return response.data;
 };
+
+//send a course to an email
+export const sendCourseToEmail = async (courseId: string, email: string) => {
+  const data = { courseId, email }
+  const response = await apiClient.post('/courses/send-email', data);
+  return response.data
+}

@@ -26,25 +26,32 @@ export default function PaypalPayment() {
                 </CardHeader>
                 <CardContent className="space-y-4 text-center">
                     {/* Info Box */}
-                    <div className="bg-blue-50 p-4 rounded-xl text-sm text-gray-700">
-                        <p className="mb-2">Send $50 payment to:</p>
-                        <p className="font-semibold text-blue-700">
-                            victoriadaniel890@yahoo.com
-                        </p>
-                        <p className="mt-3">
-                            ⚠️ Please include the <b>email you used to register</b> on our
-                            site in the <b>payment description</b>.
-                        </p>
+                    <div className="bg-blue-50 p-5 rounded-xl text-gray-700 text-sm space-y-3 shadow-sm">
+                        <h3 className="text-base font-semibold text-gray-800">Complete Your Registration</h3>
+
+                        <ol className="list-decimal list-inside text-left space-y-2">
+                            <li>
+                                Send <span className="font-bold text-pink-600">$50</span> payment to:
+                                <p className="font-semibold text-blue-700 mt-1">finestneedle890@gmail.com</p>
+                            </li>
+                            <li>
+                                In the <b>payment description</b>, include:
+                                <ul className="list-disc list-inside ml-5 mt-1 text-gray-600">
+                                    <li>Your <span className="font-semibold">registration email</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                Once payment is confirmed, your account will be activated 🎉
+                            </li>
+                        </ol>
                     </div>
 
                     {/* Button */}
-                    <Button
-                        onClick={handleSubmit}
-                        className="w-full"
-                    >
+                    <Button onClick={handleSubmit} className="w-full">
                         I have paid
                     </Button>
                 </CardContent>
+
             </Card>
         </div>
     );
