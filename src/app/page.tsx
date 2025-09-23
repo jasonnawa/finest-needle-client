@@ -16,7 +16,7 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
-  
+
 
   const howItWorks = [
     {
@@ -61,10 +61,11 @@ export default function Home() {
             </p>
             <Link
               href="/signup"
-              className="bg-[#ff4d88] text-black px-6 py-3 rounded-full font-semibold hover:bg-[var(--accent)] transition"
+              className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition"
             >
               Get Started
             </Link>
+
           </div>
         </div>
       </section>
