@@ -97,13 +97,20 @@ export default function Home() {
         <h2 className="text-2xl text-pink-600 font-bold mb-4">
           Your Person Might Be One Click Away
         </h2>
+
         <Link
           href="/signup"
-          className="bg-[var(--accent)] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
+          className="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff4d88] transition"
         >
           Join Now!
         </Link>
+
+        <p className="mt-6 text-gray-600 text-sm">
+          Have questions? Contact us at{" "}
+          <span className="font-semibold text-pink-600">+44 7449 079270</span>
+        </p>
       </section>
+
 
       {/* Footer */}
       <footer className="text-sm text-center py-6 text-gray-500 bg-white">
