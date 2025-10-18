@@ -91,7 +91,7 @@ export default function Courses() {
                                     <p className="text-gray-600 mb-4">Learn the fundamentals of {course.title.toLowerCase()}.</p>
                                 </div>
                                 <div className="mt-auto flex items-center justify-between">
-                                    <p className="text-pink-600 font-bold text-lg">€{course.price}</p>
+                                    <p className="text-pink-600 font-bold text-lg">${course.price}</p>
                                     <Link
                                         href={course.affiliateLink ? course.affiliateLink: `/courses/${course._id}`}
                                         className="inline-block bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm"

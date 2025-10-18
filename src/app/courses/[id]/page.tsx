@@ -97,7 +97,7 @@ export default function CourseDescriptionPage({ params }: PageProps) {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">How to Purchase</h3>
           <ol className="list-decimal list-inside space-y-3 text-gray-700">
             <li>
-              Pay <span className="font-semibold text-pink-600">€{course.price}</span> to our PayPal:{" "}
+              Pay <span className="font-semibold text-pink-600">${course.price}</span> to our PayPal:{" "}
               <span className="font-mono text-blue-700">finestneedle890@gmail.com</span>
             </li>
             <li>
@@ -129,7 +129,7 @@ export default function CourseDescriptionPage({ params }: PageProps) {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-2xl font-semibold text-gray-800">€{course.price}</span>
+          <span className="text-2xl font-semibold text-gray-800">${course.price}</span>
           <button
             onClick={handleBuyNow}
             disabled={!emailValid || isLoading}
