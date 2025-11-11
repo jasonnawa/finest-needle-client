@@ -2,103 +2,87 @@ import React from "react";
 
 export default function TermsAndConditions() {
   return (
-      <div>
-        <ul className="list-disc list-inside space-y-1">
-          <li>✅ You must be at least 25 years old to submit this form.</li>
-          <li>✅ There is no upper age limit—love has no age cap!</li>
-        </ul>
+    <div className="space-y-4 text-gray-800 leading-relaxed">
+      <h3 className="font-semibold text-lg">Terms & Conditions</h3>
+      <p>
+        By submitting this form, you agree to provide accurate and truthful information for the purpose of matchmaking.
+        A clear, full-length of your recent photo / picture of yourself (head to toe) is required as part of the application.
+      </p>
 
-        <p>Our platform welcomes individuals from all walks of life, including:</p>
-        <ul className="list-disc list-inside ml-4">
-          <li>Divorced individuals</li>
-          <li>Single parents</li>
-          <li>Widows and widowers</li>
-          <li>People of all cultural, ethnic, and religious backgrounds</li>
-        </ul>
+      <p>
+        Submissions without all this requirement may result to your application not to be considered.
+        All these will be used solely for matchmaking purposes and will not be shared publicly without your consent.
+      </p>
 
-        <p>
-          ✅ Follow me and subscribe to my community while we work on finding your match. The
-          subscription fee is <strong>£3 per month</strong>. The matchmaking form and access to terms cost <strong>$50</strong>.
-        </p>
+      <h3 className="font-semibold text-lg mt-6">Matchmaking Service Disclaimer & Terms</h3>
+      <p>
+        Thank you for your interest in my matchmaking service. My goal is to connect you with a potential match
+        based on the preferences and details you provide. However, please understand that matchmaking is a process,
+        not a guarantee. While I will make every effort to find a suitable match for you, success ultimately depends
+        on various factors, including compatibility, personal effort, and timing.
+      </p>
 
-        <p>
-          We are dedicated to helping like-minded individuals find genuine relationships. Please ensure
-          you meet the age requirement before proceeding. If you’re 25 or older and ready to find your
-          perfect match, let’s get started!
-        </p>
+      <p>By signing up for this service, you acknowledge and agree to the following:</p>
+      <ul className="list-disc list-inside ml-4 space-y-1">
+        <li>
+          <strong>No Guaranteed Matches –</strong> While I carefully consider your preferences and search for compatible
+          individuals, I cannot guarantee that a match will be found or that any match will result in a successful relationship.
+        </li>
+        <li>
+          <strong>Non-Refundable Payment –</strong> The matchmaking fee covers the time, effort, and resources dedicated
+          to reviewing your application, searching for a suitable match, and facilitating introductions. Regardless of
+          the outcome, all payments are final and non-refundable.
+        </li>
+        <li>
+          <strong>Client Responsibility –</strong> Once a match is introduced, it is your responsibility to engage,
+          communicate, and determine compatibility. I am not responsible for the actions, behavior, or decisions of
+          any match you are introduced to.
+        </li>
+        <li>
+          <strong>Privacy & Confidentiality –</strong> Your information will be handled with care and discretion;
+          however, I am not liable for any outcomes resulting from the exchange of contact details between matches.
+        </li>
+        <li>
+          <strong>Honest & Accurate Information –</strong> You must provide truthful and up-to-date information about
+          yourself. Any misrepresentation can affect the quality of your matches and may result in termination of services
+          without a refund. In addition, users must provide accurate and truthful information about their relationship
+          status, background, and intentions. Misrepresentation may result in removal from the platform.
+        </li>
+      </ul>
 
-        <h3 className="font-semibold mt-4">Why Is Matchmaking Important?</h3>
-        <ul className="list-disc list-inside ml-4">
-          <li>Saves You Time & Effort – No more endless swiping or unserious dates.</li>
-          <li>More Meaningful Matches – Based on values, personality, and goals.</li>
-          <li>Safe & Private – Confidential, genuine, and serious-minded people only.</li>
-          <li>Less Stress, More Success – With personalized guidance and support.</li>
-        </ul>
+      <h3 className="font-semibold text-lg mt-6">Match Guarantee</h3>
+      <p>
+        While we strive to provide thoughtful and compatible matches, we do not guarantee a specific number of matches,
+        romantic outcomes, or success in forming a long-term relationship.
+      </p>
 
-        <p>
-          By submitting this form, you agree to provide accurate and truthful information for the purpose
-          of matchmaking. A clear, full-length (head-to-toe) photo of yourself is required.
-        </p>
-        <p>
-          Submissions without a full-body photo may not be considered. Photos are used strictly for
-          matchmaking and will not be shared without consent.
-        </p>
+      <h3 className="font-semibold text-lg mt-6">Refund Policy</h3>
+      <p>
+        All payments are final. We do not offer refunds once services have commenced, regardless of the outcome
+        or client’s participation level.
+      </p>
 
-        <h3 className="font-semibold mt-4">Confidentiality and Live Stream Policy</h3>
-        <p>
-          To maintain privacy, clients are strictly prohibited from discussing or referencing participation
-          in live streams or public forums hosted by <strong>Finest Needle</strong>. This includes:
-        </p>
-        <ul className="list-disc list-inside ml-4">
-          <li>Sharing matchmaking experiences publicly</li>
-          <li>Mentioning private communications or names during live events</li>
-        </ul>
-        <p>
-          Violations will result in immediate removal, permanent platform bans, and loss of all fees paid.
-          <strong> No exceptions or refunds.</strong>
-        </p>
+      <h3 className="font-semibold text-lg mt-6">Matchmaking Duration and Renewal Policy</h3>
+      <p>
+        The matchmaking service is a six months package. Once the six months laps (match attempts), a “lap” is defined
+        as a completed introduction or effort made to match you with a compatible individual.
+      </p>
+      <p>
+        If, after six months laps, a suitable match is not found or a successful connection is not established,
+        the service will be considered complete. Clients wishing to continue must renew their package to receive
+        additional match attempts. No additional matches will be made beyond the initial six months laps without renewal.
+      </p>
 
-        <h3 className="font-semibold mt-4">Matchmaking Service Disclaimer</h3>
-        <ul className="list-disc list-inside ml-4">
-          <li><strong>No Guaranteed Matches:</strong> Success depends on compatibility and timing.</li>
-          <li><strong>Non-Refundable Payment:</strong> All fees are final, covering time and effort.</li>
-          <li><strong>Client Responsibility:</strong> You’re responsible for engaging with matches.</li>
-          <li><strong>Privacy:</strong> We’re not liable for outcomes once contacts are exchanged.</li>
-          <li><strong>Honest Info:</strong> Misrepresentation leads to service termination.</li>
-        </ul>
+      <p>
+        By submitting this form and making a payment, you confirm that you understand and accept these terms.
+      </p>
 
-        <h3 className="font-semibold mt-4">Match Guarantee</h3>
-        <p>
-          We aim to offer thoughtful matches but cannot guarantee a specific number of matches or
-          successful relationships.
-        </p>
+      <p>
+        If you’re ready to begin, please complete the form with as much detail as possible to improve your chances
+        of finding a compatible match.
+      </p>
 
-        <h3 className="font-semibold mt-4">Refund Policy</h3>
-        <p>All payments are final. No refunds will be issued once services start.</p>
-
-        <h3 className="font-semibold mt-4">Matchmaking Duration and Renewal</h3>
-        <p>
-          Service is valid for <strong>six months</strong>. A "lap" means a full introduction attempt.
-        </p>
-        <p>
-          After six laps or six months (whichever comes first), service ends. To continue, you must renew.
-        </p>
-
-        <p>
-          By submitting the form and making payment, you confirm acceptance of these terms.
-        </p>
-
-        <h3 className="font-semibold mt-4">Digital Products & Orders</h3>
-        <ul className="list-disc list-inside ml-4">
-          <li>All sales are final – no refunds or exchanges unless stated.</li>
-          <li>Digital products are delivered via email or instant download.</li>
-          <li>Sharing of content is prohibited.</li>
-          <li>We’re not responsible for incorrect email/contact details.</li>
-          <li>Contact: <a className="text-blue-600 underline" href="mailto:finestneedle@gmail.com">finestneedle@gmail.com</a></li>
-        </ul>
-
-        <p className="font-medium mt-6 text-center">📩 DM me or fill out the matchmaking form to get started!</p>
-    
+      <p className="font-medium mt-6 text-center">📩 Fill out the matchmaking form to get started!</p>
     </div>
   );
 }
